@@ -1,4 +1,5 @@
 import express from "express"
+import { parseAdsTxt } from "../utils/parser";
 
 const app = express()
 
@@ -13,13 +14,13 @@ app.get('/api/test', async (req, res) => {
         }
 
         const text = await response.text();
-        console.log(text);
+        const result = await parseAdsTxt(text)
 
-        res.send(text);
+        res.send(result);
     } catch (error) {
         console.error('An error occured with the fetch operation:', error);
         res.status(500).send('Error fetching the file');
     }
 })
 
-app.listen(3002, () => console.log('Node/Express server started 1'))
+app.listen(3002, () => console.log('Node/Express server started'))

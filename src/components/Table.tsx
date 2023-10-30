@@ -2,7 +2,7 @@ import { useContext, useState } from "react"
 import SearchContext from "../SearchContext"
 
 export default function Table() {
-    const { results, setResults, parse, searchResults } = useContext(SearchContext)
+    const { results, setResults, parse, searchResults, searchTerm } = useContext(SearchContext)
     const [sortOrder, setSortOrder] = useState('asc')
 
     const sort = (fn) => {
@@ -24,6 +24,15 @@ export default function Table() {
                     <li onClick={() => parse('cnn.com')} className="clickable hover:bg-blue-100 w-48 rounded py-3">cnn.com</li>
                     <li onClick={() => parse('vidazoo.com')} className="clickable hover:bg-blue-100 w-48 rounded py-3">vidazoo.com</li>
                 </ul>
+            </div>
+        )
+    }
+
+    if (searchTerm.length && Object.keys(searchResults).length == 0) {
+        return (
+            <div className="flex flex-col gap-6 items-center justify-center h-96">
+                <svg xmlns="http://www.w3.org/2000/svg" width="46" height="46" viewBox="0 0 256 256"><g fill="currentColor"><path d="M192 112a80 80 0 1 1-80-80a80 80 0 0 1 80 80Z" opacity=".2"/><path d="m229.66 218.34l-50.06-50.06a88.21 88.21 0 1 0-11.32 11.31l50.06 50.07a8 8 0 0 0 11.32-11.32ZM40 112a72 72 0 1 1 72 72a72.08 72.08 0 0 1-72-72Z"/></g></svg>
+                <div>No results</div>
             </div>
         )
     }

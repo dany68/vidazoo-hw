@@ -1,6 +1,6 @@
 # Vidazoo Home Assignment - Daniel Elmalem
 
-## [Live Demo](https://vidazoo-hw-production.up.railway.app)
+### [Live Demo](https://vidazoo-hw-production.up.railway.app)
 
 ## Project setup
 

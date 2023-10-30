@@ -1,12 +1,14 @@
+import { Results } from "../types";
+
 const EMPTY_LINE = /^\s*$/;
 const NEW_LINE = /\r\n|\n|\r/;
 const COMMENT_LINE = /^\s*#/;
-const VALID_DOMAIN = /^(?:(?!-)[A-Za-z0-9-]{1,63}(?<!-)\.)+[A-Za-z]{2,6}$/;
+export const VALID_DOMAIN = /^(?:(?!-)[A-Za-z0-9-]{1,63}(?<!-)\.)+[A-Za-z]{2,6}$/;
 
 /**
  * Parse ads.txt data
  */
-export const parseAdsTxt = (fileText) => {
+export const parseAdsTxt = (fileText): Promise<Results> => {
     return new Promise((resolve, reject) => {
         try {
             const t0 = performance.now();
@@ -32,6 +34,7 @@ export const parseAdsTxt = (fileText) => {
             const t1 = performance.now();
 
             resolve({
+                domain: '',
                 advertiserDomains,
                 time: (t1 - t0).toFixed(2),
                 parseErrors,

@@ -1,12 +1,13 @@
 import { createContext, useState } from "react";
+import { Results, AdvertiserDomains } from "../types";
 
 const SearchContext = createContext({});
 
 export function SearchProvider({ children }) {
-    const [results, setResults] = useState({
+    const [results, setResults] = useState<Results>({
         domain: 'NaN',
         advertiserDomains: {},
-        time: 0,
+        time: '0',
         parseErrors: 0,
     })
 
@@ -39,7 +40,7 @@ export function SearchProvider({ children }) {
         })
     };
 
-    const searchResults = Object.fromEntries(
+    const searchResults: AdvertiserDomains = Object.fromEntries(
         Object.keys(results.advertiserDomains).filter(item => {
             return item.toLowerCase().includes(searchTerm.toLowerCase());
         }).map(key => [key, results.advertiserDomains?.[key]])

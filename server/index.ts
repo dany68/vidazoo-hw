@@ -1,34 +1,40 @@
 import express from "express"
-import { parseAdsTxt } from "../utils/parser";
+import { parseAdsTxt, VALID_DOMAIN } from "../utils/parser";
+import { Results } from "../types";
 
 const app = express()
 
 app.use(express.json())
 
-app.post('/api/parse', async (req, res) => {
+app.post('/api/parse', async ({ body: {search} }, res) => {
+    try {        
+        validate(search)
 
-    // TODO: Validate posted data
-
-    try {
-        const fileUrl = `https://${req.body.search}/ads.txt`;
-
-        const response = await fetch(fileUrl);
+        const response = await fetch(`https://${search}/ads.txt`);
 
         if (! response.ok) {
-            throw new Error('Network response was not ok');
+            throw { message: 'Failed to retrieve the Ads.txt file.', code: response.status };
         }
 
         const text = await response.text();
-        const result = await parseAdsTxt(text)
-        result.domain = req.body.search
+        const results: Results = await parseAdsTxt(text)
+        results.domain = search
 
-        console.log(result)
-
-        res.json(result);
+        res.json(results);
     } catch (error) {
         console.error('An error occured with the fetch operation:', error);
+        if (error.code) {
+            return res.status(error.code).send(error.message);
+        }
         res.status(500).send('Error fetching the file');
     }
 })
 
 app.listen(3002, () => console.log('Node/Express server started'))
+
+
+function validate(str: string) {
+    if (! str.length || ! VALID_DOMAIN.test(str)) {
+        throw { message: 'Validation failed', code: 400 };
+    }
+}

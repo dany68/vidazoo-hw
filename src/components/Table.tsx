@@ -8,8 +8,8 @@ export default function Table() {
     const sort = (fn) => {
         const sortedData = Object.entries(results.advertiserDomains).sort(fn);
         setSortOrder(prev => prev === 'asc' ? 'desc' : 'asc')
-        setResults(prevResults => ({
-            ...prevResults,
+        setResults(prev => ({
+            ...prev,
             advertiserDomains: Object.fromEntries(sortedData)
         }))
     };

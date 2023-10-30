@@ -3,10 +3,14 @@ import { parseAdsTxt } from "../utils/parser";
 
 const app = express()
 
-app.get('/api/test', async (req, res) => {
+app.use(express.json())
+
+app.post('/api/parse', async (req, res) => {
+
+    // TODO: Validate posted data
+
     try {
-        // const fileUrl = 'https://www.bbc.com/ads.txt'; // Replace with the URL of the file you want to fetch
-        const fileUrl = 'https://msn.com/ads.txt'; // Replace with the URL of the file you want to fetch
+        const fileUrl = `https://${req.body.search}/ads.txt`;
 
         const response = await fetch(fileUrl);
 
@@ -16,6 +20,7 @@ app.get('/api/test', async (req, res) => {
 
         const text = await response.text();
         const result = await parseAdsTxt(text)
+        result.domain = req.body.search
 
         console.log(result)
 

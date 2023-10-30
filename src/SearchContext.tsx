@@ -15,7 +15,7 @@ export function SearchProvider({ children }) {
     const parse = async (domain: String) => {
         setErrors([])
 
-        await fetch('/api/test', {
+        await fetch('/api/parse', {
             method: 'post',
             body: JSON.stringify({ search: domain }),
             headers: {

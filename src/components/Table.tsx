@@ -18,7 +18,7 @@ export default function Table() {
         return (
             <div className="flex flex-col gap-4 items-center justify-center h-96">
                 <h2 className="font-bold text-xl">Start a search in the top bar..</h2>
-                <div className="divider">OR select one below</div>
+                <div className="divider w-96">OR select one below</div>
                 <ul className="text-blue-800 text-center">
                     <li onClick={() => parse('msn.com')} className="clickable hover:bg-blue-100 w-48 rounded py-3">msn.com</li>
                     <li onClick={() => parse('cnn.com')} className="clickable hover:bg-blue-100 w-48 rounded py-3">cnn.com</li>

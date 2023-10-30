@@ -1,5 +1,7 @@
 # Vidazoo Home Assignment - Daniel Elmalem
 
+## [Live Demo](https://vidazoo-hw-production.up.railway.app)
+
 ## Project setup
 
 The project was setup using Vite `npm create vite@latest` with the React Typescript template.
@@ -15,9 +17,9 @@ All APIs endpoints are defined in the root server/index.js file and are proxied 
 - Search (with counter) and Sort through the results
 - Loading animation (on the search bar "Parse" button) while fetch is pending
 - Error handling with visual red indication on the search bar
-- Project hosted on Vercel
+- Project hosted on Railway
 - Server cache (TODO)
-- Typescript (very lightly..)
+- Typescript (lightly..)
 
 #### Error status codes
 - Validation errors: 400
@@ -34,3 +36,6 @@ Go to the root of the project and run:
 Both environment use HMR.
 
 ## Production CMDs:
+
+- To build the front end: `npm run build`
+- To serve both the front-end & the backend: `npm run start`

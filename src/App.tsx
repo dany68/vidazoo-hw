@@ -1,35 +1,22 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { SearchProvider } from "./SearchContext";
+import Header from "./components/Header";
+import Table from "./components/Table";
 
-function App() {
-  const [count, setCount] = useState(0)
-
-  return (
+export default function App() {
+    return (
     <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
-}
+        <SearchProvider>
+            <Header />
+            <main className="container pt-40 pb-20">
+                <div className="rounded-lg bg-white border-2">
+                    <Table />
+                </div>
+            </main>
+        </SearchProvider>
 
-export default App
+        <footer className="text-center text-zinc-500 pb-32">
+            <p>Developed with <span className="text-red-400 animate-pulse">&hearts;</span> by Daniel Elmalem<br /> For a Vidazoo Assignement</p>
+        </footer>
+    </>
+    )
+}

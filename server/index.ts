@@ -3,6 +3,7 @@ import { parseAdsTxt, VALID_DOMAIN } from "../utils/parser";
 import { Results } from "../types";
 
 const app = express()
+const port = process.env['PORT'] || 3002;
 
 app.use(express.json())
 
@@ -31,7 +32,7 @@ app.post('/api/parse', async ({ body: {search} }, res) => {
 })
 
 app.use(express.static(process.cwd() + '/dist'))
-app.listen(3002, () => console.log('Node/Express server started'))
+app.listen(port, () => console.log(`Node/Express server started on port ${port}`))
 
 
 function validate(str: string) {

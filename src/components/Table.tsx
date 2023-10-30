@@ -2,7 +2,7 @@ import { useContext, useState } from "react"
 import SearchContext from "../SearchContext"
 
 export default function Table() {
-    const { results, setResults, parse } = useContext(SearchContext)
+    const { results, setResults, parse, searchResults } = useContext(SearchContext)
     const [sortOrder, setSortOrder] = useState('asc')
 
     const sort = (fn) => {
@@ -37,7 +37,7 @@ export default function Table() {
                 </tr>
             </thead>
             <tbody>
-                {Object.entries(results.advertiserDomains).map(([key, val]) => (
+                {Object.entries(Object.keys(searchResults).length ? searchResults : results.advertiserDomains).map(([key, val]) => (
                     <tr className="hover:bg-gray-50" key={key}>
                         <td className="pl-8">{key}</td>
                         <td>{val}</td>

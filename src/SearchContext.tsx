@@ -11,7 +11,8 @@ export function SearchProvider({ children }) {
     })
 
     const [errors, setErrors] = useState([])
-    const [pending, setPending] = useState(false)
+    const [pending, setPending] = useState<Boolean>(false)
+    const [searchTerm, setSearchTerm] = useState<String>('');
 
     const parse = async (domain: String) => {
         setErrors([])
@@ -38,8 +39,14 @@ export function SearchProvider({ children }) {
         })
     };
 
+    const searchResults = Object.fromEntries(
+        Object.keys(results.advertiserDomains).filter(item => {
+            return item.toLowerCase().includes(searchTerm.toLowerCase());
+        }).map(key => [key, results.advertiserDomains?.[key]])
+    );
+
     return (
-        <SearchContext.Provider value={{ results, setResults, parse, errors, pending }}>
+        <SearchContext.Provider value={{ results, setResults, parse, searchResults, setSearchTerm, errors, pending }}>
             { children }
         </SearchContext.Provider>
     )

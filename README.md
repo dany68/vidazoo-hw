@@ -18,6 +18,7 @@ All APIs endpoints are defined in the root server/index.js file and are proxied 
 - Loading animation (on the search bar "Parse" button) while fetch is pending
 - Error handling with visual red indication on the search bar
 - Project hosted on Railway
+- Responsive design / Mobile friendly
 - Server cache (TODO)
 - Typescript (lightly..)
 

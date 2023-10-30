@@ -26,7 +26,7 @@
     }
 
     .divider {
-        @apply flex items-center uppercase text-xs;
+        @apply flex items-center max-w-[96%] uppercase text-xs;
     }
       
     .divider::before, .divider::after {
@@ -36,6 +36,6 @@
 
 @layer components {
     .container {
-        @apply w-[980px] max-w-[90%] mx-auto;
+        @apply w-[980px] max-w-[94%] mx-auto;
     }
 }

@@ -16,7 +16,7 @@ export default function Table() {
 
     if (! Object.keys(results.advertiserDomains).length) {
         return (
-            <div className="flex flex-col gap-4 items-center justify-center h-96">
+            <div className="flex flex-col gap-4 items-center justify-center text-center h-96">
                 <h2 className="font-bold text-xl">Start a search in the top bar..</h2>
                 <div className="divider w-96">OR select one below</div>
                 <ul className="text-blue-800 text-center">
@@ -39,7 +39,7 @@ export default function Table() {
 
     return (
         <table className="w-full text-sm border-separate">
-            <thead className="sticky top-[90px] z-10">
+            <thead className="sticky top-[126px] md:top-[90px] z-10">
                 <tr>
                     <th onClick={() => sort(([a], [b]) => sortOrder === 'asc' ? a.localeCompare(b) : b.localeCompare(a))} className="clickable pl-8">Domain</th>
                     <th onClick={() => sort(([,a], [,b]) => sortOrder === 'asc' ? b - a : a - b)} className="clickable w-1/3">Count</th>

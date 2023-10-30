@@ -1,4 +1,8 @@
-export const downloadJSON = (jsonData, fileName) => {
+export const downloadJSON = (jsonData: any, fileName: string) => {
+    if (! Object.keys(jsonData).length) {
+        return alert('No results available for download. Please search an another domain.')
+    }
+
     const blob = new Blob([JSON.stringify(jsonData)], { type: 'application/json' });
 
     const link = document.createElement('a');

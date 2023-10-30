@@ -11,9 +11,11 @@ export function SearchProvider({ children }) {
     })
 
     const [errors, setErrors] = useState([])
+    const [pending, setPending] = useState(false)
 
     const parse = async (domain: String) => {
         setErrors([])
+        setPending(true)
 
         await fetch('/api/parse', {
             method: 'post',
@@ -25,17 +27,19 @@ export function SearchProvider({ children }) {
             if (! res.ok) {
                 throw { message: res.statusText, code: res.status };
             }
+
             const json = await res.json()
-            console.log(json)
             setResults(json)
         })
         .catch(e => {
             setErrors([e])
+        }).finally(() => {
+            setPending(false)
         })
     };
 
     return (
-        <SearchContext.Provider value={{ results, setResults, parse, errors, setErrors }}>
+        <SearchContext.Provider value={{ results, setResults, parse, errors, pending }}>
             { children }
         </SearchContext.Provider>
     )

@@ -1,7 +1,7 @@
 import { createContext, useState } from "react";
 import { Results, AdvertiserDomains } from "../types";
 
-const SearchContext = createContext({});
+const SearchContext = createContext<SearchContextType>({});
 
 export function SearchProvider({ children }) {
     const [results, setResults] = useState<Results>({

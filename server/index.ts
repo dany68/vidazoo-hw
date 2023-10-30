@@ -30,6 +30,7 @@ app.post('/api/parse', async ({ body: {search} }, res) => {
     }
 })
 
+app.use(express.static(process.cwd() + '/dist'))
 app.listen(3002, () => console.log('Node/Express server started'))
 
 

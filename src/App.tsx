@@ -14,8 +14,13 @@ export default function App() {
             </main>
         </SearchProvider>
 
-        <footer className="text-center text-zinc-500 pb-32">
-            <p>Developed with <span className="text-red-400 animate-pulse">&hearts;</span> by Daniel Elmalem<br /> For a Vidazoo Assignement</p>
+        <footer className="text-center pb-32">
+            <div className="flex items-center justify-center mb-10 font-bold text-sm space-x-2">
+                <a href="https://github.com/dany68/vidazoo-hw" target="_blank">Github Repo</a>
+                <span>•</span>
+                <a href="https://dany.work" target="_blank">Portfolio Website</a>
+            </div>
+            <p className="text-zinc-600">Developed with <span className="text-red-400 animate-pulse">&hearts;</span> by Daniel Elmalem<br /> For a Vidazoo Assignement</p>
         </footer>
     </>
     )

@@ -8,7 +8,7 @@ export default function Header() {
 
     function initResults() {
         setResults({
-            domain: 'NaN',
+            domain: 'N/D',
             time: 0,
             parseErrors: 0,
             advertiserDomains: [],

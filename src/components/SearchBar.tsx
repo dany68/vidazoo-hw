@@ -19,8 +19,8 @@ export default function SearchBar() {
             <form method="post" onSubmit={submitForm}>
                 <input name="search"
                     type="text"
-                    defaultValue={results.domain != 'NaN' ? results.domain : ''}
-                    className={`w-full py-1.5 pl-4 pr-20 rounded-full border border-black bg-black/20 focus:ring-2 ring-blue-600 ${errors.length ? '!border-red-500' : ''}`}
+                    defaultValue={results.domain != 'N/D' ? results.domain : ''}
+                    className={`w-full py-1.5 pl-4 pr-20 rounded-full border border-black bg-black/20 focus:ring-2 ring-blue-600 ${errors.length ? '!border-red-500 focus:ring-red-400/60' : ''}`}
                     placeholder="Enter a domain name... (e.g. msn.com)"
                 />
                 <button type="submit" disabled={pending} className="absolute top-1/2 -translate-y-1/2 right-1 clickable bg-blue-600 text-white rounded-full px-3 py-1">

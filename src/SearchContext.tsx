@@ -5,7 +5,7 @@ const SearchContext = createContext<SearchContextType>({});
 
 export function SearchProvider({ children }) {
     const [results, setResults] = useState<Results>({
-        domain: 'NaN',
+        domain: 'N/D',
         time: 0,
         parseErrors: 0,
         advertiserDomains: [],

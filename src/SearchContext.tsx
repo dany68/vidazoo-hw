@@ -19,13 +19,8 @@ export function SearchProvider({ children }) {
         setErrors([])
         setPending(true)
 
-        await fetch('/api/parse', {
-            method: 'post',
-            body: JSON.stringify({ search: domain }),
-            headers: {
-                'Content-Type': 'application/json',
-            },
-        }).then(async res => {
+        await fetch(`/api/parse?domain=${domain}`)
+        .then(async res => {
             if (! res.ok) {
                 throw { message: res.statusText, code: res.status };
             }

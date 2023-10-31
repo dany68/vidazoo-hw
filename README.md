@@ -19,7 +19,7 @@ All APIs endpoints are defined in the root server/index.js file and are proxied 
 - Error handling with visual red indication on the search bar
 - Project hosted on Railway
 - Responsive design / Mobile friendly
-- Server cache (TODO)
+- Server cache
 - Typescript (lightly..)
 
 #### Error status codes

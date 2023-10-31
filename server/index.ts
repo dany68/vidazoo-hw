@@ -1,26 +1,26 @@
 import express from "express"
+import apicache from 'apicache'
 import { parseAdsTxt, VALID_DOMAIN } from "../utils/parser";
 import { Results } from "../types";
 
 const app = express()
 const port = process.env['PORT'] || 3002;
+const cache = apicache.middleware('5 minutes');
 
-app.use(express.json())
-
-app.post('/api/parse', async ({ body: {search} }, res) => {
-    try {        
+app.get('/api/parse', cache, async ({ query: {domain} }, res) => {
+    try {
         // Can be improve with a prepareForValidation() to format the search query to allow more
         // flexibility. For instance, it could account for scenarios where the user enters 'https://'.
-        validate(search)
+        validate(domain)
 
-        const response = await fetch(`https://${search}/ads.txt`);
+        const response = await fetch(`https://${domain}/ads.txt`);
 
         if (! response.ok) {
             throw { message: 'Failed to retrieve the Ads.txt file.', code: response.status };
         }
 
         const text = await response.text();
-        const results: Results = await parseAdsTxt(text, search)
+        const results: Results = await parseAdsTxt(text, domain)
 
         res.json(results);
     } catch (error) {

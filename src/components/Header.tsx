@@ -16,13 +16,20 @@ export default function Header() {
         window.scrollTo(0, 0);
     }
 
+    function downloadResults() {
+        if (! Object.keys(results.advertiserDomains).length) {
+            return alert('No results available for download. Please search an another domain.');
+        }
+        downloadJSON(results, `${results.domain}.json`)
+    }
+
     return (
         <header className="fixed top-0 left-0 right-0 pt-3 space-y-3 bg-[#161617cc]/90 backdrop-blur-sm text-white border-b-2 border-black/60">
             <div className="container grid grid-cols-2 md:grid-cols-5 gap-2 gap-y-3 items-center">
                 <h1 onClick={initResults} className="clickable font-bold hover:text-blue-200">Ads.txt Crawler</h1>
                 <div className="col-span-2 max-md:order-2 md:col-span-3 relative"><SearchBar /></div>
                 <div className="text-right max-md:order-1 max-md:text-xs">
-                    <button onClick={() => downloadJSON(results.advertiserDomains, `${results.domain}.json`)} className="bg-blue-300 text-blue-800 rounded-full px-3 py-1">Download</button>
+                    <button onClick={downloadResults} className="bg-blue-300 text-blue-800 rounded-full px-3 py-1">Download</button>
                 </div>
             </div>
             <div className="overflow-scroll pb-3 max-md:px-5">

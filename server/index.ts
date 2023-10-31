@@ -9,8 +9,11 @@ const cache = apicache.middleware('5 minutes');
 
 app.get('/api/parse', cache, async ({ query: {domain} }, res) => {
     try {
-        // Can be improve with a prepareForValidation() to format the search query to allow more
-        // flexibility. For instance, it could account for scenarios where the user enters 'https://'.
+        // We can improve the code with a prepareForValidation() method in the client side
+        // to format the search query to allow more flexibility.
+        // For instance, it could account for scenarios where the user enters 'https://'.
+        // Also possible to validate in client side to avoid pinging the server.
+        // But in any case validation must be performed server side also.
         validate(domain)
 
         const response = await fetch(`https://${domain}/ads.txt`);

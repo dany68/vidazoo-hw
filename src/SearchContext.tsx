@@ -6,9 +6,9 @@ const SearchContext = createContext<SearchContextType>({});
 export function SearchProvider({ children }) {
     const [results, setResults] = useState<Results>({
         domain: 'NaN',
-        advertiserDomains: {},
-        time: '0',
+        time: 0,
         parseErrors: 0,
+        advertiserDomains: {},
     })
 
     const [errors, setErrors] = useState([])

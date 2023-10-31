@@ -8,7 +8,7 @@ export const VALID_DOMAIN = /^(?:(?!-)[A-Za-z0-9-]{1,63}(?<!-)\.)+[A-Za-z]{2,6}$
 /**
  * Parse ads.txt data
  */
-export const parseAdsTxt = (fileText): Promise<Results> => {
+export const parseAdsTxt = (fileText: string, domain: string): Promise<Results> => {
     return new Promise((resolve, reject) => {
         try {
             const t0 = performance.now();
@@ -21,9 +21,12 @@ export const parseAdsTxt = (fileText): Promise<Results> => {
                     return;
                 }
 
-                const domain = line.split(',')[0].trim();
+                const [domain, ...otherFields] = line.split(',').map(field => field.trim().toLowerCase());
 
-                if (! VALID_DOMAIN.test(domain)) {
+                // Specifications for ads.txt requires at least 3 fields:
+                // the domain name, the publisher's account ID, and the account type
+                // The code can be improve to check the format of the account ID and type
+                if (otherFields.length < 2 || ! VALID_DOMAIN.test(domain) || otherFields.some(field => field === '')) {
                     parseErrors++;
                     return;
                 }
@@ -34,10 +37,10 @@ export const parseAdsTxt = (fileText): Promise<Results> => {
             const t1 = performance.now();
 
             resolve({
-                domain: '',
-                advertiserDomains,
-                time: (t1 - t0).toFixed(2),
+                domain,
+                time: Math.floor((t1 - t0)*100),
                 parseErrors,
+                advertiserDomains,
             });
         } catch (err) {
             console.error('Error reading the file:', err);

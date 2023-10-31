@@ -18,8 +18,7 @@ app.post('/api/parse', async ({ body: {search} }, res) => {
         }
 
         const text = await response.text();
-        const results: Results = await parseAdsTxt(text)
-        results.domain = search
+        const results: Results = await parseAdsTxt(text, search)
 
         res.json(results);
     } catch (error) {

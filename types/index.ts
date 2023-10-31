@@ -1,6 +1,6 @@
 export interface Results {
     domain: string,
-    time: string,
+    time: number,
     advertiserDomains: AdvertiserDomains,
     parseErrors: number,
 }

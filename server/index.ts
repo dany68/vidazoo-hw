@@ -9,6 +9,8 @@ app.use(express.json())
 
 app.post('/api/parse', async ({ body: {search} }, res) => {
     try {        
+        // Can be improve with a prepareForValidation() to format the search query to allow more
+        // flexibility. For instance, it could account for scenarios where the user enters 'https://'.
         validate(search)
 
         const response = await fetch(`https://${search}/ads.txt`);

@@ -40,3 +40,9 @@ Both environment use HMR.
 
 - To build the front end: `npm run build`
 - To serve both the front-end & the backend: `npm run start`
+
+
+## General notes:
+
+It seems I don't compute the parsing errors the same way as the demo website. The details can be found in utils/parser.ts line 26.
+For instance with cnn.com's ads.txt the line 'ownerdomain=turner.com' will be considered invalid. In your demo website it seems to be ignored.

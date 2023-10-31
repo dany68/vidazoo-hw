@@ -1,13 +1,11 @@
 export interface Results {
-    domain: string,
-    time: number,
-    advertiserDomains: AdvertiserDomains,
-    parseErrors: number,
+    domain: string;
+    time: number;
+    advertiserDomains: AdvertiserDomains;
+    parseErrors: number;
 }
 
-export interface AdvertiserDomains {
-    [key: string]: number;
-}
+export type AdvertiserDomains = Array<{ domain: string; count: number }>;
 
 export interface SearchContextType {
     results: Results,

@@ -13,7 +13,7 @@ export const parseAdsTxt = (fileText: string, domain: string): Promise<Results> 
         try {
             const t0 = performance.now();
             const lines = fileText.split(NEW_LINE);
-            const advertiserDomains = {};
+            const advertiserDomains = [];
             let parseErrors = 0;
 
             lines.forEach(line => {
@@ -31,7 +31,8 @@ export const parseAdsTxt = (fileText: string, domain: string): Promise<Results> 
                     return;
                 }
 
-                advertiserDomains[domain] = (advertiserDomains[domain] || 0) + 1;
+                const foundDomain = advertiserDomains.find(item => item.domain === domain);
+                foundDomain ? foundDomain.count++ : advertiserDomains.push({ domain, count: 1 });
             });
 
             const t1 = performance.now();

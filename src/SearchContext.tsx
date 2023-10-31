@@ -8,7 +8,7 @@ export function SearchProvider({ children }) {
         domain: 'NaN',
         time: 0,
         parseErrors: 0,
-        advertiserDomains: {},
+        advertiserDomains: [],
     })
 
     const [errors, setErrors] = useState([])
@@ -35,10 +35,8 @@ export function SearchProvider({ children }) {
         })
     };
 
-    const searchResults: AdvertiserDomains = Object.fromEntries(
-        Object.keys(results.advertiserDomains).filter(item => {
-            return item.toLowerCase().includes(searchTerm.toLowerCase());
-        }).map(key => [key, results.advertiserDomains?.[key]])
+    const searchResults: AdvertiserDomains = results.advertiserDomains.filter(
+        item => item.domain.toLowerCase().includes(searchTerm.toLowerCase())
     );
 
     return (
